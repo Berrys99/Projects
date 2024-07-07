@@ -114,10 +114,12 @@ sorted_word_letter_count_map = dict(sorted(word_letter_count_map.items()))
 
 for word_types, occurrence in word_type_map.items():
     word_types = word_types.replace('_', ' ').replace('num of', '')
-    if occurrence > 1:
-        print('There are', f'{occurrence:2}', word_types)
-    else:
+    if occurrence == 1:
         print('There is ', f'{occurrence:2}', word_types.rstrip('s'))
+    else:
+        print('There are', f'{occurrence:2}', word_types)
+
+print('The sum of all the numbers', sum_of_all_the_numbers)
 
 print('----------------------------------------')
 print(f'{'LEN|' : <10}' + f'{'OCCURENCES' : ^10}' + f'{'|NR.': >10}' )
