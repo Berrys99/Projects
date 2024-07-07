@@ -71,7 +71,7 @@ if selected_text_index.isnumeric():
 else:
     exit('unsupported character, terminating program..')
 
-selected_text=TEXTS[selected_text_index - 1] 
+selected_text = TEXTS[selected_text_index - 1] 
 
 prepared_text = list()
 selected_text = selected_text.replace(',', ' ').replace('.', ' ').replace("-", " ").replace("\n", " ")
@@ -115,7 +115,7 @@ sorted_word_letter_count_map = dict(sorted(word_letter_count_map.items()))
 for word_types, occurrence in word_type_map.items():
     word_types = word_types.replace('_', ' ').replace('num of', '')
     if occurrence > 1:
-        print('There are',f'{occurrence:2}', word_types)
+        print('There are', f'{occurrence:2}', word_types)
     else:
         print('There is ', f'{occurrence:2}', word_types.rstrip('s'))
 
@@ -123,5 +123,5 @@ print('----------------------------------------')
 print(f'{'LEN|' : <10}' + f'{'OCCURENCES' : ^10}' + f'{'|NR.': >10}' )
 print('----------------------------------------')
 
-for sorting, graph in sorted_word_letter_count_map.items():
-    print(f'{sorting:3}''|' f'{'*'* graph:21}', '|', graph)
+for lenght, number_of_ocur in sorted_word_letter_count_map.items():
+    print(f'{lenght:3}''|' f'{'*'* number_of_ocur:21}', '|', number_of_ocur)
