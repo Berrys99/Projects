@@ -61,7 +61,7 @@ print('Welcome to the app', (logged_username))
 
 print('We have 3 text to be analyzed.')
 print('---------------------------')
-selected_text_index = input('Enter a number btw. 1 and 3 to select: ')
+selected_text_index = input(int('Enter a number btw. 1 and 3 to select: '))
 print('---------------------------')
 
 if selected_text_index.isnumeric():
@@ -90,7 +90,7 @@ word_type_map = {'num_of_words': len(prepared_text),
                  'num_of_numeric_strings': 0}
 
 for word in prepared_text:
-    if word.istitle() and word.isalpha():
+    if word.istitle():
         word_type_map.update({'num_of_titlecase_words': word_type_map ['num_of_titlecase_words'] + 1})
     elif word.isupper() and word.isalpha():
         word_type_map.update({'num_of_uppercase_words': word_type_map ['num_of_uppercase_words'] + 1})
