@@ -61,7 +61,7 @@ print('Welcome to the app', (logged_username))
 
 print('We have 3 text to be analyzed.')
 print('---------------------------')
-selected_text_index = input(int('Enter a number btw. 1 and 3 to select: '))
+selected_text_index = input('Enter a number btw. 1 and 3 to select: ')
 print('---------------------------')
 
 if selected_text_index.isnumeric():
