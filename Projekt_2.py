@@ -23,8 +23,7 @@ unique_numbers = random.sample(range(0,10), 4)
 while unique_numbers[0] == 0:
     unique_numbers = random.sample(range(0,10), 4)
 
-number_for_game = f'{unique_numbers[0]}' + f'{unique_numbers[1]}' + f'{unique_numbers[2]}' + f'{unique_numbers[3]}'      
-print(number_for_game)
+number_for_game = f'{unique_numbers[0]}' + f'{unique_numbers[1]}' + f'{unique_numbers[2]}' + f'{unique_numbers[3]}' # For testing     
 
 print('-----------------------------------------------')
 print('If you want to stop playing, type "exit"')
