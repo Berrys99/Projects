@@ -24,11 +24,12 @@ while unique_numbers[0] == 0:
     unique_numbers = random.sample(range(0,10), 4)
 
 number_for_game = f'{unique_numbers[0]}' + f'{unique_numbers[1]}' + f'{unique_numbers[2]}' + f'{unique_numbers[3]}'      
+print(number_for_game)
 
 print('-----------------------------------------------')
 print('If you want to stop playing, type "exit"')
 
-def check(checked_attempt):
+def input_check(checked_attempt):
     """
     Checking if the input is right
     """
@@ -42,8 +43,34 @@ def check(checked_attempt):
         return 'Numbers cannot be duplicates'
     return None
 
-attempts = list()
+def hints_updater(dict_name, dict_animal):
+    """
+    Updating hints in 'hints' dict
+    """
+    dict_name.update({dict_animal: dict_name[dict_animal]+1})
 
+def hints_counter(numbers_list,random_numbers,index_for_numbers):
+    """
+    Counting how many numbers are correct in players input
+    """
+    for users_numbers in numbers_list:
+            if users_numbers in random_numbers:
+                hints_updater(hints, 'cows')
+            if users_numbers == random_numbers[index_for_numbers]:
+                hints_updater(hints, 'bulls')
+            index_for_numbers += 1
+
+def hints_printer(hints_dict):
+    """
+    Printing hints for the player
+    """
+    for animals, ocurence in hints_dict():
+        if ocurence == 1:
+            print(animals.rstrip('s'), ':', ocurence)
+        else:
+            print(animals, ':', ocurence)
+
+attempts = 0
 time_start = time.perf_counter()
 
 while True:
@@ -54,34 +81,27 @@ while True:
     splited_users_numbers_set = set()
     splited_user_numbers_list = list()
     hints = {'cows': 0, 'bulls': 0}
-    index_for_numbers = 0
 
     for one_number in user_attempt:
         splited_users_numbers_set.add(one_number)
-    
-    error_in_attempt = check(user_attempt)      
+
+    error_in_attempt = input_check(user_attempt)
 
     if error_in_attempt == None:
-        attempts.append(user_attempt)
+        attempts += 1
         for one_number in user_attempt:
             splited_user_numbers_list.append(int(one_number))
     
-        for users_numbers in splited_user_numbers_list:
-            if users_numbers in unique_numbers:
-                hints.update({'cows': hints['cows']+1})
-            if users_numbers == unique_numbers[index_for_numbers]:
-                hints.update({'bulls': hints['bulls']+1})
-            index_for_numbers += 1
-            continue
+        hints_counter(splited_user_numbers_list,unique_numbers,0)
+
     else:
         print(error_in_attempt)
         continue
     
-    for animals, ocurence in hints.items():
-        if ocurence == 1:
-            print(animals.rstrip('s'), ':', ocurence)
-        else:
-            print(animals, ':', ocurence)
+    hints.update({'cows': hints['cows'] - hints['bulls']})
+
+    hints_printer(hints.items)
+
     print('-----------------------------------------------')
     if hints['bulls'] == 4:
         break
@@ -92,7 +112,7 @@ minutes = int(time_value / 60)
 seconds = time_value % 60
 
 attemps_informations = [['Attempts', ' Time'],
-                        [len(attempts), f'{minutes:02}:{round(seconds):02}']]
+                        [attempts, f'{minutes:02}:{round(seconds):02}']]
 
 file_path = 'results.csv'
 
@@ -113,3 +133,4 @@ print('---->', number_for_game, '<----')
 print("Correct, you've guessed the right number\nin ",len(attempts), " guesses")
 print(f'your time: {minutes:02}:{round(seconds):02}')
 print('-----------------------------------------------')
+
