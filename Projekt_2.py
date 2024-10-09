@@ -129,7 +129,7 @@ except FileNotFoundError:
 
 print('-----------------------------------------------')
 print('---->', number_for_game, '<----')
-print("Correct, you've guessed the right number\nin ",len(attempts), " guesses")
+print("Correct, you've guessed the right number\nin ",attempts, " guesses")
 print(f'your time: {minutes:02}:{round(seconds):02}')
 print('-----------------------------------------------')
 
